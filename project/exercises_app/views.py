@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 
-from exercises_app.models import Article
+from exercises_app.models import Article, Band
 
 # Create your views here.
 def article_view(request):
@@ -14,5 +14,13 @@ def article_view(request):
         else:
             response += f"<li>{article.title} {article.date_added}</li>"
     response += '</ul>'
+
+    return HttpResponse(response)
+
+
+def show_band(request, band_id):
+
+    band = Band.objects.get(id=band_id)
+    response = f"{band.name} {band.get_genre_display()} {band.year} {band.still_active}"
 
     return HttpResponse(response)

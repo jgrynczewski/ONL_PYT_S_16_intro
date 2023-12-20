@@ -21,4 +21,6 @@ from exercises_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', views.article_view),
+
+    path('show-band/<int:band_id>/', views.show_band),
 ]
