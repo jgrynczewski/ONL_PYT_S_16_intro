@@ -18,6 +18,7 @@ from django.urls import path
 
 from exercises_app import views
 from football import views as football_views
+from day3 import views as day3_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,7 @@ urlpatterns = [
 
     path('show-band/<int:band_id>/', views.show_band),
     path('table/', football_views.league_table),
+
+    path('first/', day3_views.first_view),
+
 ]

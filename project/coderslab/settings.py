@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'exercises_app',
     'homework_app',
     'football',
+    'day3'
 ]
 
 MIDDLEWARE = [
