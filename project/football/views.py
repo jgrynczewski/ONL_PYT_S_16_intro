@@ -14,7 +14,10 @@ def league_table(request):
 
 
 def games_played(request):
-    team = Team.objects.get(id=1)
+    data = request.GET
+    team_id = data.get('id')
+
+    team = Team.objects.get(id=team_id)
     home_games = Game.objects.filter(team_home=team)
     away_games = Game.objects.filter(team_away=team)
 
