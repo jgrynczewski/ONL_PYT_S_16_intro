@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from exercises_app import views
+from football import views as football_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', views.article_view),
 
     path('show-band/<int:band_id>/', views.show_band),
+    path('table/', football_views.league_table),
 ]
