@@ -40,6 +40,8 @@ class Article(models.Model):
     emission_start = models.DateField(null=True)
     emission_end = models.DateField(null=True)
 
+    categories = models.ManyToManyField('Category')
+
 
 class Album(models.Model):
     RATING_CHOICES = [
@@ -61,3 +63,13 @@ class Song(models.Model):
     title = models.CharField(max_length=128)
     duration = models.TimeField(null=True)
     album = models.ForeignKey('Album', on_delete=models.CASCADE)
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=64)
+    position = models.OneToOneField('Position', on_delete=models.CASCADE)
+
+
+class Position(models.Model):
+    position_name = models.CharField(max_length=64)
+    salary = models.DecimalField(max_digits=12, decimal_places=2)
