@@ -13,7 +13,6 @@ def article_view(request):
             response += f"<li>{article.title} {article.author} {article.date_added}</li>"
         else:
             response += f"<li>{article.title} {article.date_added}</li>"
-
     response += '</ul>'
 
     return HttpResponse(response)
