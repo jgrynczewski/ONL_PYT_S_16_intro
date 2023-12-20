@@ -73,3 +73,4 @@ def forth_view(request):
             result = (float(degrees) - 32) * 5/9
 
         return HttpResponse(result)
+

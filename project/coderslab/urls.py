@@ -26,6 +26,7 @@ urlpatterns = [
 
     path('show-band/<int:band_id>/', views.show_band),
     path('table/', football_views.league_table),
+    path('games/', football_views.games_played),
 
     path('first/', day3_views.first_view),
     path('third/', day3_views.third_view),
