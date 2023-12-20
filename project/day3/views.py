@@ -42,3 +42,34 @@ def third_view(request):
             return HttpResponse(f"Witaj, {first_name} {last_name}")
         else:
             return HttpResponse("Brak wymaganych parametrów (first_name, last_name)", status=400)
+
+
+@csrf_exempt
+def forth_view(request):
+    if request.method == "GET":
+
+        response = """
+        <form action="" method="POST">
+            <label>
+                Temperatura:
+                <input type="number" min="0.00" step="0.01" name="degrees">
+            </label>
+            <input type="submit" name="convertionType" value="celcToFahr">
+            <input type="submit" name="convertionType" value="FahrToCelc">
+        </form>
+        """
+        return HttpResponse(response)
+
+    elif request.method == "POST":
+        print(request.POST)
+        data = request.POST
+
+        degrees = data.get('degrees')
+        convertion = data.get('convertionType')
+
+        if convertion == "celcToFahr":
+            result = float(degrees) * 9/5 + 32
+        else:
+            result = (float(degrees) - 32) * 5/9
+
+        return HttpResponse(result)
