@@ -17,6 +17,9 @@ def games_played(request):
     data = request.GET
     team_id = data.get('id')
 
+    if team_id is None:
+        return HttpResponse("Brak wymaganych parametrów (id)", status=400)
+
     team = Team.objects.get(id=team_id)
     home_games = Game.objects.filter(team_home=team)
     away_games = Game.objects.filter(team_away=team)
