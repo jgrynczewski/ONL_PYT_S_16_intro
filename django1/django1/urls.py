@@ -27,7 +27,7 @@ urlpatterns = [
         'random/<int:max_number>/',
         views.random_view2
     ),
-    # Zadanie 1
+    # Zadanie 1 (Definiowanie urli ciąg dalszy)
     # re_path(
     #     r'^random/(?P<max_number>\d{2,4})/$',
     #     views.random_view2
@@ -37,6 +37,7 @@ urlpatterns = [
         'random/<int:min_number>/<int:max_number>/',
         views.random_view3
     ),
+    # Zadanie 1 (Definiowanie urli ciąg dalszy)
     # re_path(
     #     'random/(?P<min_number>\d{2})/(?P<max_number>\d{4})/',
     #     views.random_view3
