@@ -3,17 +3,25 @@ from django.views.decorators.csrf import csrf_exempt
 
 from football.models import Team, Game
 
+
 def league_table(request):
+    try:
+        fav_team_id = int(request.COOKIES.get('fav_team'))
+    except (ValueError, TypeError):
+        fav_team_id = None
 
     teams = Team.objects.all().order_by('-points')
     response = ''
     for idx, team in enumerate(teams, start=1):
-        response += f"""
-            {idx} 
-            <a href="/games/?id={team.id}">{team.name}</a> 
-            {team.points}
-        """
-        response += "<br/>"
+        response += f"<p>{idx}"
+        if team.id == fav_team_id:
+            response += f'<a href="/games/?id={team.id}" style="background:red;">{team.name}</a>'
+        else:
+            response += f'<a href="/games/?id={team.id}">{team.name}</a>'
+        response += f' <a href="/set-as-favourite/?id={team.id}"><button>Ustaw jako ulubiony</button></a> '
+        response += f"{team.points}"
+
+        response += "</p>"
 
     return HttpResponse(response)
 
