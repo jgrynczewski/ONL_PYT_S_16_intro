@@ -39,4 +39,5 @@ urlpatterns = [
     path('show-cookie/', day4_views.show_cookie),
     path('delete-cookie/', day4_views.delete_cookie),
 
+    path('add-to-cookie/', day4_views.add_to_cookie),
 ]
