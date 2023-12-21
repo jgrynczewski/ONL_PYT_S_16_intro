@@ -19,6 +19,7 @@ from django.urls import path
 from exercises_app import views
 from football import views as football_views
 from day3 import views as day3_views
+from day4 import views as day4_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,9 @@ urlpatterns = [
     path('forth/', day3_views.forth_view),
 
     path('add-game/', football_views.add_game),
+
+    path('set-cookie/', day4_views.set_cookie),
+    path('show-cookie/', day4_views.show_cookie),
+    path('delete-cookie/', day4_views.delete_cookie),
+
 ]
