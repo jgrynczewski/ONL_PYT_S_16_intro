@@ -108,3 +108,44 @@ def login(request):
         request.session['loggedUser'] = name
 
     return HttpResponse("OK")
+
+
+@csrf_exempt
+def add_to_session(request):
+    if request.method == "GET":
+        response = """
+            <form action="#" method="POST">
+                <label>
+                    Klucz:
+                    <input type="text" name="key">
+                </label>
+                <label>
+                    Wartość:
+                    <input type="text" name="value">
+                </label>
+                <input type="submit">
+            </form>
+        """
+
+        return HttpResponse(response)
+
+    elif request.method == "POST":
+        data = request.POST
+        key = data.get('key')
+        value = data.get('value')
+
+        if not key or not value:
+            return HttpResponse("Brak wymaganych parametrów", status=400)
+
+        request.session[key] = value
+
+        return HttpResponse(f"Stworzono wpis {key} o wartości {value} w sesji.")
+
+
+def show_all_session(request):
+    response = ""
+    print(dir(request.session))
+    for key, value in request.session.items():
+        response += f"<p>{key} = {value}</p>"
+
+    return HttpResponse(response)

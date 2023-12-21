@@ -48,4 +48,6 @@ urlpatterns = [
     path('delete-session/', day4_views.delete_session),
 
     path('login/', day4_views.login),
+    path('add-to-session/', day4_views.add_to_session),
+    path('show-all-session/', day4_views.show_all_session),
 ]
