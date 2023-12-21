@@ -91,4 +91,17 @@ def add_game(request):
             team_away_goals=team_away_goals
         )
 
+        # Zad 4 - punktacja
+        if team_home_goals > team_away_goals:
+            team_home.points += 3
+            team_home.save()
+        elif team_away_goals > team_home_goals:
+            team_away.points += 3
+            team_away.save()
+        else:
+            team_home.points += 1
+            team_away.points += 1
+            team_home.save()
+            team_away.save()
+
         return redirect(f'/games/?id={team_home_id}')
