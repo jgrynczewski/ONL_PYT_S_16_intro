@@ -74,3 +74,37 @@ def delete_session(request):
     del request.session['counter']
 
     return HttpResponse("Usunięto klucz counter z sesji")
+
+
+@csrf_exempt
+def login(request):
+    if request.method == "GET":
+
+        response = ""
+
+        logged_user = request.session.get('loggedUser')
+        if logged_user:
+            response += f"<h2>Witaj {logged_user}</h2>"
+
+        response += """
+        <form action="" method="POST">
+            <label>
+                Imię:
+                <input type="text" name="name">
+            </label>
+            <input type="submit">
+        </form>
+        """
+
+        return HttpResponse(response)
+
+    elif request.method == "POST":
+        data = request.POST
+        name = data.get('name')
+
+        if not name:
+            return HttpResponse("Brak wymaganych parametrów", status=400)
+
+        request.session['loggedUser'] = name
+
+    return HttpResponse("OK")
