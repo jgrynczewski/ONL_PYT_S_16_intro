@@ -40,4 +40,6 @@ urlpatterns = [
     path('delete-cookie/', day4_views.delete_cookie),
 
     path('add-to-cookie/', day4_views.add_to_cookie),
+
+    path('set-as-favourite/', football_views.set_as_favourite),
 ]

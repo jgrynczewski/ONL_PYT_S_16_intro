@@ -105,3 +105,21 @@ def add_game(request):
             team_away.save()
 
         return redirect(f'/games/?id={team_home_id}')
+
+
+def set_as_favourite(request):
+    data = request.GET
+    team_id = data.get('id')
+
+    # sprawdzamy czy parametr metody get - id - istnieje oraz czy ma poprawną wartość
+    if not team_id or not team_id.isdigit():
+        return HttpResponse("Błędna wartość parametru", status=400)  # 400 - bad request
+
+    # sprawdzamy, czy w bazie istnieje wpis w tabelce Team dla wskazanej wartości parametru id
+    if not Team.objects.filter(id=team_id).exists():
+        return HttpResponse("Klub o wskazanym id nie istnieje", status=404)  # 400 - bad request
+
+    response = HttpResponse(f"Przeglądarka zapisuje ciasteczko fav_team z wartością {team_id}")
+    response.set_cookie('fav_team', team_id)
+
+    return response
