@@ -31,4 +31,6 @@ urlpatterns = [
     path('first/', day3_views.first_view),
     path('third/', day3_views.third_view),
     path('forth/', day3_views.forth_view),
+
+    path('add-game/', football_views.add_game),
 ]
