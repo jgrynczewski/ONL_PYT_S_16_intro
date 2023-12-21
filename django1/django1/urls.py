@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 from exercises_app import views
 
@@ -27,4 +27,19 @@ urlpatterns = [
         'random/<int:max_number>/',
         views.random_view2
     ),
+    # Zadanie 1
+    # re_path(
+    #     r'^random/(?P<max_number>\d{2,4})/$',
+    #     views.random_view2
+    # ),
+
+    path(
+        'random/<int:min_number>/<int:max_number>/',
+        views.random_view3
+    ),
+    # re_path(
+    #     'random/(?P<min_number>\d{2})/(?P<max_number>\d{4})/',
+    #     views.random_view3
+    # ),
+
 ]
