@@ -42,4 +42,8 @@ urlpatterns = [
     path('add-to-cookie/', day4_views.add_to_cookie),
 
     path('set-as-favourite/', football_views.set_as_favourite),
+
+    path('set-session/', day4_views.set_session),
+    path('show-session/', day4_views.show_session),
+    path('delete-session/', day4_views.delete_session),
 ]

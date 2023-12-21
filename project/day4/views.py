@@ -53,3 +53,24 @@ def add_to_cookie(request):
         response.set_cookie(key, value)
 
         return response
+
+
+def set_session(request):
+    request.session['counter'] = 0
+    return HttpResponse("OK")
+
+
+def show_session(request):
+    if 'counter' not in request.session:
+        return HttpResponse("Brak sesji lub w danych sesji brak klucza counter")
+
+    request.session['counter'] += 1
+    counter = request.session['counter']
+
+    return HttpResponse(counter)
+
+
+def delete_session(request):
+    del request.session['counter']
+
+    return HttpResponse("Usunięto klucz counter z sesji")
