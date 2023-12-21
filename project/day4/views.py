@@ -161,3 +161,25 @@ def hello_view(request):
 class HelloView(views.View):
     def get(self, request):
         return HttpResponse("Hello, world!")
+
+
+class ThirdView(views.View):
+    def get(self, request):
+        response = """
+        <form method="POST">
+            <input type="text" name="first_name" placeholder="first name">
+            <input type="text" name="last_name" placeholder="last name"> 
+            <input type="submit">
+        </form>
+        """
+        return HttpResponse(response)
+
+    def post(self, request):
+        data = request.POST
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+
+        if first_name and last_name:
+            return HttpResponse(f"Witaj, {first_name} {last_name}")
+        else:
+            return HttpResponse("Brak wymaganych parametrów (first_name, last_name)", status=400)

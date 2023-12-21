@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 
 from exercises_app import views
 from football import views as football_views
@@ -55,5 +56,6 @@ urlpatterns = [
     path('hello/', day4_views.hello_view),
     path('hello2/', day4_views.HelloView.as_view()),
 
+    path('zad1/', csrf_exempt(day4_views.ThirdView.as_view())),
 
 ]
