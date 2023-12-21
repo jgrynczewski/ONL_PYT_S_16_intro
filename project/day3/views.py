@@ -61,7 +61,6 @@ def forth_view(request):
         return HttpResponse(response)
 
     elif request.method == "POST":
-        print(request.POST)
         data = request.POST
 
         degrees = data.get('degrees')

@@ -57,5 +57,6 @@ urlpatterns = [
     path('hello2/', day4_views.HelloView.as_view()),
 
     path('zad1/', csrf_exempt(day4_views.ThirdView.as_view())),
+    path('zad2/', csrf_exempt(day4_views.ForthView.as_view())),
 
 ]
