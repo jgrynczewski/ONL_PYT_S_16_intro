@@ -50,6 +50,11 @@ def games_played(request):
 @csrf_exempt
 def add_game(request):
     if request.method == "GET":
+        # Zad 4 - sesje
+        last_team_home = request.session.get('last_team_home')
+        if last_team_home:
+            last_team_home = int(last_team_home)
+
         teams = Team.objects.all()
         response = """
             <form method=POST>
@@ -57,7 +62,12 @@ def add_game(request):
         """
 
         for team in teams:
-            response += f"<option value={team.id}>{team.name}</option>"
+            # Zad 4 - sesje
+            if team.id == last_team_home:
+                response += f"<option value={team.id} selected>{team.name}</option>"
+            else:
+                response += f"<option value={team.id}>{team.name}</option>"
+
         response += """
             </select>
             <input type=number name=team_home_goals min=0 required></p>
@@ -111,6 +121,9 @@ def add_game(request):
             team_away.points += 1
             team_home.save()
             team_away.save()
+
+        # Zad 4 - sesje
+        request.session['last_team_home'] = team_home_id
 
         return redirect(f'/games/?id={team_home_id}')
 
