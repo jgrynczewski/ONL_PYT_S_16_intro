@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django import views
 
 def set_cookie(request):
 
@@ -149,3 +150,14 @@ def show_all_session(request):
         response += f"<p>{key} = {value}</p>"
 
     return HttpResponse(response)
+
+
+# Widok funkcyjny
+def hello_view(request):
+    return HttpResponse("Hello, world!")
+
+
+# Widok klasowy
+class HelloView(views.View):
+    def get(self, request):
+        return HttpResponse("Hello, world!")
